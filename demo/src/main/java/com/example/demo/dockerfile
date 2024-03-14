@@ -1,14 +1,18 @@
-# Use an OpenJDK runtime as the base image
 FROM openjdk:11-jre-slim
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the packaged JAR file into the container
-COPY demo/pom.xml
+# Copy the Maven project description file
+COPY demo/pom.xml /app/pom.xml
+
+# Copy the rest of the application
+COPY . /app
+
+# Run Maven to build the application
+RUN mvn clean package
 
 # Expose the port your application runs on
 EXPOSE 80
 
-# Command to run the application when the container starts
-CMD ["java", "-jar", "your-application.jar"]
+# Command to run the application
+CMD ["java", "-jar", "target/your-application.jar"]
