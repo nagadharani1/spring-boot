@@ -7,8 +7,6 @@ WORKDIR /app
 # Copy the packaged JAR file into the container
 COPY target/your-application.jar /app/your-application.jar
 
-COPY spring-boot/demo/src/main/java/com/example/demo/dockerfile
-
 # Expose the port your application runs on
 EXPOSE 80
 
