@@ -3,7 +3,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the Maven project description file
-COPY demo/pom.xml /app/pom.xml
+COPY pom.xml /app/pom.xml
 
 # Copy the rest of the application
 COPY . /app
