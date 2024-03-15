@@ -1,18 +1,23 @@
-FROM openjdk:8u171-jre-alpine
+# Use a Java runtime as a parent image
+FROM openjdk:11-jre-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
+# Copy the Maven wrapper files to the container
+COPY .mvn/ .mvn/
+
 # Copy the Maven project description file
-COPY ./pom.xml ./pom.xml
+COPY pom.xml .
 
-# Copy the rest of the application
-COPY ./src ./src
+# Copy the application source code into the container
+COPY src/ src/
 
-# Run Maven to build the application
-RUN mvn package
+# Build the application
+RUN ./mvnw package -DskipTests
 
-# Expose the port your application runs on
-EXPOSE 8000
+# Expose the port the application runs on
+EXPOSE 8080
 
-# Command to run the application
-CMD ["java", "-jar", "spring-boot"]
+# Run the application
+CMD ["java", "-jar", "target/demo.jar"]
