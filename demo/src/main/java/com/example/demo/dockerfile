@@ -2,8 +2,10 @@ FROM openjdk:11-jre-slim
 
 WORKDIR /app
 
+ARG JAR_FILE=target/spring-boot-web-jar
+
 # Copy the Maven project description file
-COPY pom.xml /app/pom.xml
+COPY ${JAR_FILE} app.jar
 
 # Copy the rest of the application
 COPY . /app
