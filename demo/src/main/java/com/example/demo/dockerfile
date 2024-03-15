@@ -1,18 +1,18 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:8u171-jre-alpine
 
 WORKDIR /app
 
 # Copy the Maven project description file
-COPY target/pom.xml /app
+COPY ./pom.xml ./pom.xml
 
 # Copy the rest of the application
-COPY src /app/src
+COPY ./src ./src
 
 # Run Maven to build the application
-RUN mvn clean package
+RUN mvn package
 
 # Expose the port your application runs on
-EXPOSE 80
+EXPOSE 8000
 
 # Command to run the application
-CMD ["java", "-jar", "target/your-application.jar"]
+CMD ["java", "-jar", "spring-boot"]
