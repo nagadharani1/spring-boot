@@ -6,7 +6,7 @@ WORKDIR /app
 COPY target/pom.xml /app
 
 # Copy the rest of the application
-COPY . /app
+COPY src /app/src
 
 # Run Maven to build the application
 RUN mvn clean package
